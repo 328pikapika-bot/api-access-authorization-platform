@@ -1,0 +1,14 @@
+**/node_modules/
+**/dist/
+**/.vite/
+**/coverage/
+**/target/*
+!open-platform-server/target/*.jar
+**/*.log
+**/*.zip
+**/*.tar
+**/*.tar.gz
+certs/
+run-logs/
+upload/
+*备份*/

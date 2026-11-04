@@ -1,0 +1,15 @@
+version: '3.9'
+services:
+  open-platform-web-admin:
+    image: docker-hosted.example.invalid/nstl/open-platform/web-admin-frontend:${VERSION:-1.0.0}
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: open-platform-web-admin
+    ports:
+      - "18301:80"
+    restart: unless-stopped
+    environment:
+      - TZ=Asia/Shanghai
+    depends_on:
+      - open-platform-service

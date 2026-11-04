@@ -1,0 +1,82 @@
+# Java
+*.class
+*.jar
+*.war
+*.ear
+target/
+!.mvn/wrapper/maven-wrapper.jar
+
+# IDE
+.idea/
+.vscode/
+*.iml
+*.iws
+*.ipr
+
+# Node
+node_modules/
+dist/
+.nuxt/
+.cache/
+.vite/
+coverage/
+
+# Logs
+logs/
+run-logs/
+*.log
+*.err.log
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Environment
+.env
+.env.*
+.env.local
+*.local
+
+# Build
+build/
+out/
+.codebuddy/*
+deploy/*
+upload/*
+.workbuddy/*
+
+# Certificates and private keys
+certs/
+*.pfx
+*.p12
+*.pem
+*.key
+*.crt
+
+# Local workspace notes and generated files
+.claude/
+.codex-docx-render/
+.codex_backup_before_format_fix/
+.last_version.txt
+MEMORY.md
+SOUL.md
+USER.md
+TestCompile.java
+*.bak
+*.tmp
+*.zip
+*备份*/
+*备份.zip
+
+# Python cache
+__pycache__/
+*.py[cod]
+
+# Database dumps and local data
+*.dump
+*数据库备份*.sql
+
+.env
+.env.*
+!.env.example
+!.env.template

@@ -1,0 +1,472 @@
+{
+  "uuid": "7bd5b9d4-4ef8-4f91-97fb-dce4d7fd0a01",
+  "lastMigration": 33,
+  "name": "科技文献开放检索模拟环境",
+  "endpointPrefix": "",
+  "latency": 120,
+  "port": 17302,
+  "hostname": "",
+  "folders": [
+    {
+      "uuid": "843fd7c8-fd42-4a10-b3c4-6796c91d2001",
+      "name": "开放检索与分析服务",
+      "children": [
+        {
+          "type": "folder",
+          "uuid": "843fd7c8-fd42-4a10-b3c4-6796c91d2002"
+        },
+        {
+          "type": "folder",
+          "uuid": "843fd7c8-fd42-4a10-b3c4-6796c91d2003"
+        },
+        {
+          "type": "folder",
+          "uuid": "843fd7c8-fd42-4a10-b3c4-6796c91d2004"
+        }
+      ]
+    },
+    {
+      "uuid": "843fd7c8-fd42-4a10-b3c4-6796c91d2002",
+      "name": "文献检索服务",
+      "children": [
+        {
+          "type": "route",
+          "uuid": "3c41d9e2-cf3d-48b8-8d2c-9fb4204ad101"
+        },
+        {
+          "type": "route",
+          "uuid": "3c41d9e2-cf3d-48b8-8d2c-9fb4204ad102"
+        },
+        {
+          "type": "route",
+          "uuid": "3c41d9e2-cf3d-48b8-8d2c-9fb4204ad103"
+        },
+        {
+          "type": "route",
+          "uuid": "3c41d9e2-cf3d-48b8-8d2c-9fb4204ad104"
+        }
+      ]
+    },
+    {
+      "uuid": "843fd7c8-fd42-4a10-b3c4-6796c91d2003",
+      "name": "机构分析服务",
+      "children": [
+        {
+          "type": "route",
+          "uuid": "3c41d9e2-cf3d-48b8-8d2c-9fb4204ad105"
+        },
+        {
+          "type": "route",
+          "uuid": "3c41d9e2-cf3d-48b8-8d2c-9fb4204ad106"
+        }
+      ]
+    },
+    {
+      "uuid": "843fd7c8-fd42-4a10-b3c4-6796c91d2004",
+      "name": "资源推荐服务",
+      "children": [
+        {
+          "type": "route",
+          "uuid": "3c41d9e2-cf3d-48b8-8d2c-9fb4204ad107"
+        }
+      ]
+    }
+  ],
+  "routes": [
+    {
+      "uuid": "3c41d9e2-cf3d-48b8-8d2c-9fb4204ad101",
+      "type": "http",
+      "documentation": "统一检索接口，返回期刊、学位和专利等多类型资源的混合检索结果。",
+      "method": "get",
+      "endpoint": "api/v1/literature/search",
+      "responses": [
+        {
+          "uuid": "9d1b714c-25d7-4e0d-b0b6-7f4fa6c1d111",
+          "body": "{\n  \"code\": 400,\n  \"message\": \"检索关键词 keyword 不能为空\",\n  \"traceId\": \"NSTL-SEARCH-20260623-ERR-001\",\n  \"errors\": [\n    {\n      \"field\": \"keyword\",\n      \"reason\": \"缺少检索关键词\"\n    }\n  ]\n}",
+          "latency": 40,
+          "statusCode": 400,
+          "label": "缺少检索关键词",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json;charset=UTF-8"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "query",
+              "modifier": "keyword",
+              "value": "",
+              "invert": false,
+              "operator": "null"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "9d1b714c-25d7-4e0d-b0b6-7f4fa6c1d112",
+          "body": "{\n  \"code\": 200,\n  \"message\": \"success\",\n  \"traceId\": \"NSTL-SEARCH-20260623-0001\",\n  \"data\": {\n    \"pageNum\": 1,\n    \"pageSize\": 10,\n    \"total\": 2486,\n    \"tookMs\": 87,\n    \"list\": [\n      {\n        \"recordId\": \"NSTL-JP-2024-001258\",\n        \"title\": \"固态锂电池界面稳定性调控研究进展\",\n        \"resourceType\": \"journal\",\n        \"authors\": [\"王磊\", \"陈晓倩\", \"孙哲\"],\n        \"source\": \"储能材料学报\",\n        \"publishYear\": 2024,\n        \"keywords\": [\"固态电池\", \"界面工程\", \"锂金属\"],\n        \"abstract\": \"围绕固态锂电池界面阻抗、枝晶抑制与电解质匹配策略进行综述，适合作为新能源材料方向的联合检索演示数据。\",\n        \"doi\": \"10.12345/nstl.2024.1258\",\n        \"availability\": \"partial\"\n      },\n      {\n        \"recordId\": \"NSTL-TH-2023-009871\",\n        \"title\": \"面向高比能动力电池的热失控预警模型构建\",\n        \"resourceType\": \"thesis\",\n        \"authors\": [\"刘若涵\"],\n        \"source\": \"哈尔滨工业大学\",\n        \"publishYear\": 2023,\n        \"keywords\": [\"动力电池\", \"热失控\", \"预警模型\"],\n        \"abstract\": \"基于多源传感信号建立热失控预警指标体系，提供模型参数与实验数据摘要。\",\n        \"doi\": \"\",\n        \"availability\": \"full\"\n      },\n      {\n        \"recordId\": \"NSTL-PT-2025-000317\",\n        \"title\": \"一种适用于低温场景的钠离子电池电解液配方\",\n        \"resourceType\": \"patent\",\n        \"authors\": [\"中科储能科技有限公司\"],\n        \"source\": \"CN20251000317.1\",\n        \"publishYear\": 2025,\n        \"keywords\": [\"钠离子电池\", \"电解液\", \"低温性能\"],\n        \"abstract\": \"公开了一种低温稳定型电解液体系及制备方法，适合作为专利类资源检索的联调样例。\",\n        \"doi\": \"\",\n        \"availability\": \"metadata\"\n      }\n    ]\n  }\n}",
+          "latency": 120,
+          "statusCode": 200,
+          "label": "统一检索成功",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json;charset=UTF-8"
+            },
+            {
+              "key": "X-Trace-Id",
+              "value": "NSTL-SEARCH-20260623-0001"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "3c41d9e2-cf3d-48b8-8d2c-9fb4204ad102",
+      "type": "http",
+      "documentation": "检索统计接口，返回年度分布、资源类型占比和热点主题。",
+      "method": "get",
+      "endpoint": "api/v1/literature/stats",
+      "responses": [
+        {
+          "uuid": "9d1b714c-25d7-4e0d-b0b6-7f4fa6c1d121",
+          "body": "{\n  \"code\": 200,\n  \"message\": \"success\",\n  \"traceId\": \"NSTL-STATS-20260623-0001\",\n  \"data\": {\n    \"keyword\": \"新能源电池\",\n    \"total\": 2486,\n    \"typeDistribution\": [\n      {\n        \"type\": \"journal\",\n        \"count\": 1328\n      },\n      {\n        \"type\": \"thesis\",\n        \"count\": 644\n      },\n      {\n        \"type\": \"patent\",\n        \"count\": 514\n      }\n    ],\n    \"yearDistribution\": [\n      {\n        \"year\": 2021,\n        \"count\": 356\n      },\n      {\n        \"year\": 2022,\n        \"count\": 428\n      },\n      {\n        \"year\": 2023,\n        \"count\": 603\n      },\n      {\n        \"year\": 2024,\n        \"count\": 721\n      },\n      {\n        \"year\": 2025,\n        \"count\": 378\n      }\n    ],\n    \"topTopics\": [\"固态电池\", \"钠离子电池\", \"热失控\", \"电解液添加剂\"]\n  }\n}",
+          "latency": 90,
+          "statusCode": 200,
+          "label": "检索统计成功",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json;charset=UTF-8"
+            },
+            {
+              "key": "X-Trace-Id",
+              "value": "NSTL-STATS-20260623-0001"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "3c41d9e2-cf3d-48b8-8d2c-9fb4204ad103",
+      "type": "http",
+      "documentation": "检索式校验接口，适合调试 POST JSON 请求体。",
+      "method": "post",
+      "endpoint": "api/v1/literature/query/validate",
+      "responses": [
+        {
+          "uuid": "9d1b714c-25d7-4e0d-b0b6-7f4fa6c1d131",
+          "body": "{\n  \"code\": 200,\n  \"message\": \"success\",\n  \"traceId\": \"NSTL-VALIDATE-20260623-0001\",\n  \"data\": {\n    \"valid\": true,\n    \"normalizedQuery\": \"TITLE:(新能源电池) AND YEAR:[2022 TO 2025]\",\n    \"targetTypes\": [\"journal\", \"thesis\", \"patent\"],\n    \"estimatedHits\": 1283,\n    \"warnings\": [],\n    \"parserVersion\": \"1.4.2\"\n  }\n}",
+          "latency": 65,
+          "statusCode": 200,
+          "label": "检索式校验成功",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json;charset=UTF-8"
+            },
+            {
+              "key": "X-Trace-Id",
+              "value": "NSTL-VALIDATE-20260623-0001"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "3c41d9e2-cf3d-48b8-8d2c-9fb4204ad104",
+      "type": "http",
+      "documentation": "批量导出任务接口，返回异步任务受理结果。",
+      "method": "post",
+      "endpoint": "api/v1/literature/export-task",
+      "responses": [
+        {
+          "uuid": "9d1b714c-25d7-4e0d-b0b6-7f4fa6c1d141",
+          "body": "{\n  \"code\": 202,\n  \"message\": \"accepted\",\n  \"traceId\": \"NSTL-EXPORT-20260623-0001\",\n  \"data\": {\n    \"taskId\": \"EXP-20260623-0001\",\n    \"status\": \"QUEUED\",\n    \"estimatedReadyInSec\": 45,\n    \"downloadExpireInMin\": 30\n  }\n}",
+          "latency": 35,
+          "statusCode": 202,
+          "label": "导出任务已受理",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json;charset=UTF-8"
+            },
+            {
+              "key": "X-Trace-Id",
+              "value": "NSTL-EXPORT-20260623-0001"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "3c41d9e2-cf3d-48b8-8d2c-9fb4204ad105",
+      "type": "http",
+      "documentation": "机构概览接口，模拟科研机构科研画像数据，并内置 404 场景。",
+      "method": "get",
+      "endpoint": "api/v1/institutions/profile",
+      "responses": [
+        {
+          "uuid": "9d1b714c-25d7-4e0d-b0b6-7f4fa6c1d151",
+          "body": "{\n  \"code\": 404,\n  \"message\": \"机构不存在或未纳入开放画像范围\",\n  \"traceId\": \"NSTL-ORG-20260623-ERR-404\",\n  \"data\": {\n    \"orgCode\": \"NSTL404\"\n  }\n}",
+          "latency": 30,
+          "statusCode": 404,
+          "label": "机构不存在",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json;charset=UTF-8"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "query",
+              "modifier": "orgCode",
+              "value": "NSTL404",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "9d1b714c-25d7-4e0d-b0b6-7f4fa6c1d152",
+          "body": "{\n  \"code\": 200,\n  \"message\": \"success\",\n  \"traceId\": \"NSTL-ORG-20260623-0001\",\n  \"data\": {\n    \"orgCode\": \"NSTL1001\",\n    \"orgName\": \"国家科技图书文献中心能源材料协同创新中心\",\n    \"province\": \"北京\",\n    \"city\": \"北京\",\n    \"disciplines\": [\"新能源材料\", \"储能系统\", \"科技情报分析\"],\n    \"coreResearchers\": 186,\n    \"outputsLast3Years\": {\n      \"papers\": 1324,\n      \"patents\": 286,\n      \"projects\": 74\n    },\n    \"cooperationTop5\": [\"清华大学\", \"中国科学院物理研究所\", \"北京理工大学\", \"华中科技大学\", \"宁德时代研究院\"],\n    \"updatedAt\": \"2026-06-20 09:30:00\"\n  }\n}",
+          "latency": 95,
+          "statusCode": 200,
+          "label": "机构概览成功",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json;charset=UTF-8"
+            },
+            {
+              "key": "X-Trace-Id",
+              "value": "NSTL-ORG-20260623-0001"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "3c41d9e2-cf3d-48b8-8d2c-9fb4204ad106",
+      "type": "http",
+      "documentation": "机构热点主题接口，返回近一年高频研究主题和趋势强度。",
+      "method": "get",
+      "endpoint": "api/v1/institutions/topics",
+      "responses": [
+        {
+          "uuid": "9d1b714c-25d7-4e0d-b0b6-7f4fa6c1d161",
+          "body": "{\n  \"code\": 200,\n  \"message\": \"success\",\n  \"traceId\": \"NSTL-TOPIC-20260623-0001\",\n  \"data\": {\n    \"orgCode\": \"NSTL1001\",\n    \"year\": 2025,\n    \"topics\": [\n      {\n        \"name\": \"固态电解质\",\n        \"heat\": 98,\n        \"growthRate\": 0.34\n      },\n      {\n        \"name\": \"钠离子负极材料\",\n        \"heat\": 91,\n        \"growthRate\": 0.27\n      },\n      {\n        \"name\": \"热失控监测\",\n        \"heat\": 83,\n        \"growthRate\": 0.19\n      },\n      {\n        \"name\": \"循环寿命建模\",\n        \"heat\": 76,\n        \"growthRate\": 0.16\n      }\n    ]\n  }\n}",
+          "latency": 85,
+          "statusCode": 200,
+          "label": "热点主题成功",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json;charset=UTF-8"
+            },
+            {
+              "key": "X-Trace-Id",
+              "value": "NSTL-TOPIC-20260623-0001"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "3c41d9e2-cf3d-48b8-8d2c-9fb4204ad107",
+      "type": "http",
+      "documentation": "资源推荐接口，模拟首页专题资源卡片流。",
+      "method": "get",
+      "endpoint": "api/v1/resources/recommend",
+      "responses": [
+        {
+          "uuid": "9d1b714c-25d7-4e0d-b0b6-7f4fa6c1d171",
+          "body": "{\n  \"code\": 200,\n  \"message\": \"success\",\n  \"traceId\": \"NSTL-RECOMMEND-20260623-0001\",\n  \"data\": {\n    \"subject\": \"人工智能\",\n    \"items\": [\n      {\n        \"resourceId\": \"REC-0001\",\n        \"title\": \"大模型安全评测专题\",\n        \"resourceType\": \"topic\",\n        \"summary\": \"收录模型安全、提示词攻击、对齐机制等方向近两年核心文献与报告。\"\n      },\n      {\n        \"resourceId\": \"REC-0002\",\n        \"title\": \"人工智能芯片专利观察\",\n        \"resourceType\": \"report\",\n        \"summary\": \"覆盖边缘推理芯片、存算一体和国产加速卡的年度专利趋势。\"\n      },\n      {\n        \"resourceId\": \"REC-0003\",\n        \"title\": \"科学数据开放平台导航\",\n        \"resourceType\": \"dataset\",\n        \"summary\": \"精选材料、生命科学和遥感领域公开数据资源。\"\n      }\n    ]\n  }\n}",
+          "latency": 70,
+          "statusCode": 200,
+          "label": "资源推荐成功",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json;charset=UTF-8"
+            },
+            {
+              "key": "X-Trace-Id",
+              "value": "NSTL-RECOMMEND-20260623-0001"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    }
+  ],
+  "rootChildren": [
+    {
+      "type": "folder",
+      "uuid": "843fd7c8-fd42-4a10-b3c4-6796c91d2001"
+    }
+  ],
+  "proxyMode": false,
+  "proxyHost": "",
+  "proxyRemovePrefix": false,
+  "tlsOptions": {
+    "enabled": false,
+    "type": "CERT",
+    "pfxPath": "",
+    "certPath": "",
+    "keyPath": "",
+    "caPath": "",
+    "passphrase": ""
+  },
+  "cors": true,
+  "headers": [
+    {
+      "key": "Content-Type",
+      "value": "application/json"
+    },
+    {
+      "key": "Access-Control-Allow-Origin",
+      "value": "*"
+    },
+    {
+      "key": "Access-Control-Allow-Methods",
+      "value": "GET,POST,PUT,PATCH,DELETE,HEAD,OPTIONS"
+    },
+    {
+      "key": "Access-Control-Allow-Headers",
+      "value": "Content-Type, Origin, Accept, Authorization, Content-Length, X-Requested-With"
+    }
+  ],
+  "proxyReqHeaders": [
+    {
+      "key": "",
+      "value": ""
+    }
+  ],
+  "proxyResHeaders": [
+    {
+      "key": "",
+      "value": ""
+    }
+  ],
+  "data": [],
+  "callbacks": []
+}

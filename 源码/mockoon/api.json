@@ -1,0 +1,429 @@
+{
+    "uuid": "fa2ca97c-8a0c-4d63-8d88-a05c88953730",
+    "lastMigration": 33,
+    "name": "NSTL接口",
+    "endpointPrefix": "",
+    "latency": 0,
+    "port": 17301,
+    "hostname": "",
+    "folders": [
+        {
+            "uuid": "dd6e3835-0d15-45b7-94f4-21dd211febb9",
+            "name": "统一认证",
+            "children": [
+                {
+                    "type": "folder",
+                    "uuid": "6d9d9588-e972-4f85-8930-3230a88b7c25"
+                },
+                {
+                    "type": "folder",
+                    "uuid": "8eb71f99-260c-4a06-8cfe-305b25248608"
+                }
+            ]
+        },
+        {
+            "uuid": "6d9d9588-e972-4f85-8930-3230a88b7c25",
+            "name": "OAuth 2.0 方式",
+            "children": [
+                {
+                    "type": "route",
+                    "uuid": "81b5170b-a60d-4bb8-8c89-e4210cc7204d"
+                },
+                {
+                    "type": "route",
+                    "uuid": "da77887c-ff25-42cd-8baf-66dbb628785a"
+                },
+                {
+                    "type": "route",
+                    "uuid": "8069caeb-dbb7-4c1e-ad25-503f36fcc1d3"
+                },
+                {
+                    "type": "route",
+                    "uuid": "f785e11e-8762-48e4-9035-4ea89b991725"
+                }
+            ]
+        },
+        {
+            "uuid": "8eb71f99-260c-4a06-8cfe-305b25248608",
+            "name": "PC 跳转认证",
+            "children": [
+                {
+                    "type": "route",
+                    "uuid": "7accbb93-fe08-4fd8-84c6-3db74abeaf73"
+                }
+            ]
+        }
+    ],
+    "routes": [
+        {
+            "uuid": "4a08b553-9676-4af7-9d99-4d6c75a3b8c2",
+            "type": "http",
+            "documentation": "",
+            "method": "post",
+            "endpoint": "api/search",
+            "responses": [
+                {
+                    "uuid": "568a54f3-8296-41ca-aa79-b5b89cffc977",
+                    "body": "{aaaaa}",
+                    "latency": 0,
+                    "statusCode": 200,
+                    "label": "",
+                    "headers": [],
+                    "bodyType": "INLINE",
+                    "filePath": "",
+                    "databucketID": "",
+                    "sendFileAsBody": false,
+                    "rules": [],
+                    "rulesOperator": "OR",
+                    "disableTemplating": false,
+                    "fallbackTo404": false,
+                    "default": true,
+                    "crudKey": "id",
+                    "callbacks": []
+                }
+            ],
+            "responseMode": null,
+            "streamingMode": null,
+            "streamingInterval": 0
+        },
+        {
+            "uuid": "81b5170b-a60d-4bb8-8c89-e4210cc7204d",
+            "type": "http",
+            "documentation": "",
+            "method": "get",
+            "endpoint": "oauth/authorize",
+            "responses": [
+                {
+                    "uuid": "533bbede-55ce-4b95-bc44-0606642acdae",
+                    "body": "{}",
+                    "latency": 0,
+                    "statusCode": 302,
+                    "label": "",
+                    "headers": [
+                        {
+                            "key": "Location",
+                            "value": "https://www.baidu.com/?code=ST-5-6Qm5xpQkDnwPt46gyTxl-nstl.gov.cn"
+                        }
+                    ],
+                    "bodyType": "INLINE",
+                    "filePath": "",
+                    "databucketID": "",
+                    "sendFileAsBody": false,
+                    "rules": [],
+                    "rulesOperator": "OR",
+                    "disableTemplating": false,
+                    "fallbackTo404": false,
+                    "default": true,
+                    "crudKey": "id",
+                    "callbacks": []
+                }
+            ],
+            "responseMode": null,
+            "streamingMode": null,
+            "streamingInterval": 0
+        },
+        {
+            "uuid": "da77887c-ff25-42cd-8baf-66dbb628785a",
+            "type": "http",
+            "documentation": "",
+            "method": "get",
+            "endpoint": "oauth/accessToken",
+            "responses": [
+                {
+                    "uuid": "738f6e71-31f0-4946-9c21-d2ea9ea003fc",
+                    "body": "{}",
+                    "latency": 0,
+                    "statusCode": 302,
+                    "label": "",
+                    "headers": [
+                        {
+                            "key": "Location",
+                            "value": "https://www.baidu.com/access_token=TGT-2-ddjuDiDICeHBzg5gvUWISdupmGqnCL5DkF5efmlrwO1dQi6yrh-nstl.gov.cn&expires=6564"
+                        }
+                    ],
+                    "bodyType": "INLINE",
+                    "filePath": "",
+                    "databucketID": "",
+                    "sendFileAsBody": false,
+                    "rules": [],
+                    "rulesOperator": "OR",
+                    "disableTemplating": false,
+                    "fallbackTo404": false,
+                    "default": true,
+                    "crudKey": "id",
+                    "callbacks": []
+                }
+            ],
+            "responseMode": null,
+            "streamingMode": null,
+            "streamingInterval": 0
+        },
+        {
+            "uuid": "8069caeb-dbb7-4c1e-ad25-503f36fcc1d3",
+            "type": "http",
+            "documentation": "",
+            "method": "get",
+            "endpoint": "oauth/profile",
+            "responses": [
+                {
+                    "uuid": "2a73af0a-6872-4753-99a2-6e3d9e2cfd07",
+                    "body": "{\r\n    \"id\": \"h7k8lISf110QqmLl3JbyYA==\",\r\n    \"attributes\": [{\r\n        \"workunit\": \"\"\r\n    }, {\r\n        \"unionid\": \"71f367a7a692217de4f3aef1d909381a\"\r\n    }, {\r\n        \"mobilephone\": \"15321604503\"\r\n    }, {\r\n        \"usertype\": \"普通用户\"\r\n    }, {\r\n        \"userid\": \"Abby\"\r\n    }, {\r\n        \"userlibcode\": \"CN000000\"\r\n    }, {\r\n        \"email\": \"hebdc@foxmail.com\"\r\n    }, {\r\n        \"username\": \"王雪竹\"\r\n    }]\r\n}",
+                    "latency": 0,
+                    "statusCode": 200,
+                    "label": "",
+                    "headers": [],
+                    "bodyType": "INLINE",
+                    "filePath": "",
+                    "databucketID": "",
+                    "sendFileAsBody": false,
+                    "rules": [
+                        {
+                            "target": "query",
+                            "modifier": "access_token",
+                            "value": "",
+                            "invert": true,
+                            "operator": "null"
+                        }
+                    ],
+                    "rulesOperator": "OR",
+                    "disableTemplating": false,
+                    "fallbackTo404": false,
+                    "default": true,
+                    "crudKey": "id",
+                    "callbacks": []
+                },
+                {
+                    "uuid": "d40f9701-67c1-489e-a356-2aa9d0876eef",
+                    "body": "{\"error\":\"expired_accessToken\"}",
+                    "latency": 0,
+                    "statusCode": 200,
+                    "label": "",
+                    "headers": [],
+                    "bodyType": "INLINE",
+                    "filePath": "",
+                    "databucketID": "",
+                    "sendFileAsBody": false,
+                    "rules": [
+                        {
+                            "target": "query",
+                            "modifier": "access_token",
+                            "value": "",
+                            "invert": false,
+                            "operator": "null"
+                        }
+                    ],
+                    "rulesOperator": "OR",
+                    "disableTemplating": false,
+                    "fallbackTo404": false,
+                    "default": false,
+                    "crudKey": "id",
+                    "callbacks": []
+                }
+            ],
+            "responseMode": null,
+            "streamingMode": null,
+            "streamingInterval": 0
+        },
+        {
+            "uuid": "f785e11e-8762-48e4-9035-4ea89b991725",
+            "type": "http",
+            "documentation": "",
+            "method": "get",
+            "endpoint": "logout",
+            "responses": [
+                {
+                    "uuid": "1ee4b6ba-0f11-4a49-9f9a-e5c26066cf2e",
+                    "body": "{}",
+                    "latency": 0,
+                    "statusCode": 302,
+                    "label": "",
+                    "headers": [
+                        {
+                            "key": "Location",
+                            "value": "https://www.baidu.com"
+                        }
+                    ],
+                    "bodyType": "INLINE",
+                    "filePath": "",
+                    "databucketID": "",
+                    "sendFileAsBody": false,
+                    "rules": [],
+                    "rulesOperator": "OR",
+                    "disableTemplating": false,
+                    "fallbackTo404": false,
+                    "default": true,
+                    "crudKey": "id",
+                    "callbacks": []
+                }
+            ],
+            "responseMode": null,
+            "streamingMode": null,
+            "streamingInterval": 0
+        },
+        {
+            "uuid": "7accbb93-fe08-4fd8-84c6-3db74abeaf73",
+            "type": "http",
+            "documentation": "",
+            "method": "get",
+            "endpoint": "callBack",
+            "responses": [
+                {
+                    "uuid": "3fa93aaf-0d92-42a7-813a-3c0b1c952172",
+                    "body": "<html lang=\"en\">\r\n\r\n<head>\r\n    <meta charset=\"UTF-8\" />\r\n    <title>统一登录</title>\r\n    <script type=\"text/javascript\" src=\"/js/jquery-3.6.0.min.js\"></script>\r\n    <script>\r\n        $(function() {\r\n            if (self == top) {\r\n                $(\"#cas\").show();\r\n            }\r\n        });\r\n    </script>\r\n</head>\r\n\r\n<body id=\"cas\" style=\"display:none;\">\r\n    <div>\r\n        <!-- 顶部 -->\r\n        <div id=\"msg\" class=\"errors\">\r\n            <h2>CAS is Unavailable</h2> \r\n            <p>There was an error trying to complete your request. Please notify your support desk or try again.</p>\r\n        </div>\r\n        <!-- END #content -->\r\n        <!-- 底部 -->\r\n        <div class=\"login-footer\"></div>\r\n    </div>\r\n</body>\r\n\r\n</html>",
+                    "latency": 0,
+                    "statusCode": 500,
+                    "label": "",
+                    "headers": [],
+                    "bodyType": "INLINE",
+                    "filePath": "",
+                    "databucketID": "",
+                    "sendFileAsBody": false,
+                    "rules": [
+                        {
+                            "target": "query",
+                            "modifier": "a_k",
+                            "value": "token",
+                            "invert": false,
+                            "operator": "equals"
+                        },
+                        {
+                            "target": "query",
+                            "modifier": "a_cd",
+                            "value": "clientId",
+                            "invert": false,
+                            "operator": "equals"
+                        }
+                    ],
+                    "rulesOperator": "OR",
+                    "disableTemplating": false,
+                    "fallbackTo404": false,
+                    "default": false,
+                    "crudKey": "id",
+                    "callbacks": []
+                },
+                {
+                    "uuid": "c5d7fb4b-f36d-4043-8114-1ab56110c762",
+                    "body": "{}",
+                    "latency": 0,
+                    "statusCode": 302,
+                    "label": "",
+                    "headers": [
+                        {
+                            "key": "Location",
+                            "value": "https://cart.nstl.gov.cn/"
+                        }
+                    ],
+                    "bodyType": "INLINE",
+                    "filePath": "",
+                    "databucketID": "",
+                    "sendFileAsBody": false,
+                    "rules": [
+                        {
+                            "target": "query",
+                            "modifier": "a_m",
+                            "value": "cart",
+                            "invert": false,
+                            "operator": "equals"
+                        }
+                    ],
+                    "rulesOperator": "OR",
+                    "disableTemplating": false,
+                    "fallbackTo404": false,
+                    "default": false,
+                    "crudKey": "id",
+                    "callbacks": []
+                },
+                {
+                    "uuid": "03b61abc-8e45-48c1-bdaf-28729b6bba73",
+                    "body": "{}",
+                    "latency": 0,
+                    "statusCode": 302,
+                    "label": "",
+                    "headers": [
+                        {
+                            "key": "Location",
+                            "value": "https://www.nstl.gov.cn"
+                        }
+                    ],
+                    "bodyType": "INLINE",
+                    "filePath": "",
+                    "databucketID": "",
+                    "sendFileAsBody": false,
+                    "rules": [
+                        {
+                            "target": "query",
+                            "modifier": "a_m",
+                            "value": "index",
+                            "invert": false,
+                            "operator": "equals"
+                        }
+                    ],
+                    "rulesOperator": "OR",
+                    "disableTemplating": false,
+                    "fallbackTo404": false,
+                    "default": true,
+                    "crudKey": "id",
+                    "callbacks": []
+                }
+            ],
+            "responseMode": null,
+            "streamingMode": null,
+            "streamingInterval": 0
+        }
+    ],
+    "rootChildren": [
+        {
+            "type": "route",
+            "uuid": "4a08b553-9676-4af7-9d99-4d6c75a3b8c2"
+        },
+        {
+            "type": "folder",
+            "uuid": "dd6e3835-0d15-45b7-94f4-21dd211febb9"
+        }
+    ],
+    "proxyMode": false,
+    "proxyHost": "",
+    "proxyRemovePrefix": false,
+    "tlsOptions": {
+        "enabled": false,
+        "type": "CERT",
+        "pfxPath": "",
+        "certPath": "",
+        "keyPath": "",
+        "caPath": "",
+        "passphrase": ""
+    },
+    "cors": true,
+    "headers": [
+        {
+            "key": "Content-Type",
+            "value": "application/json"
+        },
+        {
+            "key": "Access-Control-Allow-Origin",
+            "value": "*"
+        },
+        {
+            "key": "Access-Control-Allow-Methods",
+            "value": "GET,POST,PUT,PATCH,DELETE,HEAD,OPTIONS"
+        },
+        {
+            "key": "Access-Control-Allow-Headers",
+            "value": "Content-Type, Origin, Accept, Authorization, Content-Length, X-Requested-With"
+        }
+    ],
+    "proxyReqHeaders": [
+        {
+            "key": "",
+            "value": ""
+        }
+    ],
+    "proxyResHeaders": [
+        {
+            "key": "",
+            "value": ""
+        }
+    ],
+    "data": [],
+    "callbacks": []
+}

@@ -1,0 +1,71 @@
+version: '3.9'
+services:
+  open-platform-service:
+    image: docker-hosted.example.invalid/nstl/open-platform/service-backend:${VERSION:-1.0.0}
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: open-platform-service
+    ports:
+      - "17300:8080"
+    restart: unless-stopped
+    environment:
+      TZ: Asia/Shanghai
+      APP_ENV: ${APP_ENV:-test}
+      JAVA_OPTS: ${JAVA_OPTS:-}
+
+      # 测试环境数据库
+      TEST_DB_HOST: ${TEST_DB_HOST:-127.0.0.1}
+      TEST_DB_PORT: ${TEST_DB_PORT:-3306}
+      TEST_DB_USERNAME: ${TEST_DB_USERNAME:-nstl_istic}
+      TEST_DB_PASSWORD: ${TEST_DB_PASSWORD:-RiqSsBy{(K8Q-ug(Q^}
+
+      # 测试环境 Redis Cluster
+      TEST_REDIS_PASSWORD: ${TEST_REDIS_PASSWORD}
+      TEST_REDIS_DATABASE: ${TEST_REDIS_DATABASE:-0}
+      TEST_REDIS_CLUSTER_NODES: ${TEST_REDIS_CLUSTER_NODES:-127.0.0.1:6381,127.0.0.1:6382,127.0.0.1:6383}
+      TEST_REDIS_CLUSTER_MAX_REDIRECTS: ${TEST_REDIS_CLUSTER_MAX_REDIRECTS:-3}
+
+      # 测试环境 JWT / 文件 / SSO
+      TEST_JWT_SECRET: ${TEST_JWT_SECRET:-change-me}
+      TEST_FILE_ACCESS_URL: ${TEST_FILE_ACCESS_URL:-http://localhost/files}
+      TEST_SSO_CLIENT_ID: ${TEST_SSO_CLIENT_ID:-}
+      TEST_SSO_CLIENT_SECRET: ${TEST_SSO_CLIENT_SECRET:-}
+      TEST_SSO_REDIRECT_URI: ${TEST_SSO_REDIRECT_URI:-http://localhost/callback}
+
+      # 测试环境沙箱 / MinIO
+      TEST_SANDBOX_SERVICE_URL: ${TEST_SANDBOX_SERVICE_URL:-http://127.0.0.1:8081}
+      TEST_MOCKOON_URL: ${TEST_MOCKOON_URL:-http://127.0.0.1:3003}
+      TEST_MINIO_ENDPOINT: ${TEST_MINIO_ENDPOINT:-http://127.0.0.1:9000}
+      TEST_MINIO_ACCESS_KEY: ${TEST_MINIO_ACCESS_KEY:-minio}
+      TEST_MINIO_SECRET_KEY: ${TEST_MINIO_SECRET_KEY}
+      TEST_MINIO_BUCKET: ${TEST_MINIO_BUCKET:-nstl-open-platform-files}
+
+      # 生产环境数据库
+      PROD_DB_HOST: ${PROD_DB_HOST:-127.0.0.1}
+      PROD_DB_PORT: ${PROD_DB_PORT:-3306}
+      PROD_DB_USERNAME: ${PROD_DB_USERNAME:-root}
+      PROD_DB_PASSWORD: ${PROD_DB_PASSWORD}
+
+      # 生产环境 Redis
+      PROD_REDIS_HOST: ${PROD_REDIS_HOST:-127.0.0.1}
+      PROD_REDIS_PORT: ${PROD_REDIS_PORT:-6379}
+      PROD_REDIS_PASSWORD: ${PROD_REDIS_PASSWORD}
+      PROD_REDIS_DATABASE: ${PROD_REDIS_DATABASE:-0}
+
+      # 生产环境 JWT / 文件 / SSO
+      PROD_JWT_SECRET: ${PROD_JWT_SECRET:-change-me}
+      PROD_FILE_ACCESS_URL: ${PROD_FILE_ACCESS_URL:-https://localhost/files}
+      PROD_SSO_CLIENT_ID: ${PROD_SSO_CLIENT_ID:-}
+      PROD_SSO_CLIENT_SECRET: ${PROD_SSO_CLIENT_SECRET:-}
+      PROD_SSO_REDIRECT_URI: ${PROD_SSO_REDIRECT_URI:-https://localhost/callback}
+
+      # 生产环境沙箱 / MinIO
+      PROD_SANDBOX_SERVICE_URL: ${PROD_SANDBOX_SERVICE_URL:-http://127.0.0.1:8081}
+      PROD_MOCKOON_URL: ${PROD_MOCKOON_URL:-http://127.0.0.1:3003}
+      PROD_MINIO_ENDPOINT: ${PROD_MINIO_ENDPOINT:-http://127.0.0.1:9002}
+      PROD_MINIO_ACCESS_KEY: ${PROD_MINIO_ACCESS_KEY:-}
+      PROD_MINIO_SECRET_KEY: ${PROD_MINIO_SECRET_KEY}
+      PROD_MINIO_BUCKET: ${PROD_MINIO_BUCKET:-nstl-open-platform-files}
+    volumes:
+      - ./logs:/app/logs
