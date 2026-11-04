@@ -1,0 +1,85 @@
+spring:
+  config:
+    activate:
+      on-profile: dev
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: org.mariadb.jdbc.Driver
+    url: jdbc:mariadb://${TEST_DB_HOST:127.0.0.1}:${TEST_DB_PORT:3306}/open_platform?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
+    username: ${TEST_DB_USERNAME:}
+    password: ${TEST_DB_PASSWORD:}
+    druid:
+      initial-size: 5
+      min-idle: 5
+      max-active: 20
+      max-wait: 60000
+      test-while-idle: true
+      test-on-borrow: false
+      test-on-return: false
+      validation-query: SELECT 1
+  redis:
+    password: ${TEST_REDIS_PASSWORD:}
+    database: ${TEST_REDIS_DATABASE:0}
+    timeout: 3000ms
+    cluster:
+      nodes: ${TEST_REDIS_CLUSTER_NODES:127.0.0.1:6381,127.0.0.1:6382,127.0.0.1:6383}
+      max-redirects: ${TEST_REDIS_CLUSTER_MAX_REDIRECTS:3}
+    lettuce:
+      pool:
+        max-active: 8
+        max-idle: 8
+        min-idle: 0
+        max-wait: -1ms
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 110MB
+      enabled: true
+
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    db-config:
+      id-type: auto
+      logic-delete-field: deleted
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+  mapper-locations: classpath*:/mapper/**/*.xml
+
+jwt:
+  secret: ${TEST_JWT_SECRET:change-me}
+  expiration: 86400000
+
+file:
+  upload-path: /data/open-platform/upload
+  access-url: ${TEST_FILE_ACCESS_URL:http://localhost/files}
+
+sso:
+  enabled: true
+  client-id: ${TEST_SSO_CLIENT_ID:rehm1m79tm4q01cd}
+  client-secret: ${TEST_SSO_CLIENT_SECRET:fs96ugjfknoya72s34v3lhxlir6r6cub}
+  authorization-uri: https://login.nstl.gov.cn/oauth/authorize
+  token-uri: REDACTED
+  user-info-uri: https://login.nstl.gov.cn/oauth/profile
+  redirect-uri: ${TEST_SSO_REDIRECT_URI:http://localhost/callback}
+
+sandbox:
+  enabled: true
+  service-url: ${TEST_SANDBOX_SERVICE_URL:http://127.0.0.1:8081}
+  mockoon-url: ${TEST_MOCKOON_URL:http://127.0.0.1:17301}
+  rate-limit: 60
+
+logging:
+  level:
+    com.nstl.openplatform: debug
+    org.springframework.security: debug
+  pattern:
+    console: '%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n'
+
+minio:
+  endpoint: ${TEST_MINIO_ENDPOINT:http://127.0.0.1:9000}
+  access-key: ${TEST_MINIO_ACCESS_KEY:minio}
+  secret-key: ${TEST_MINIO_SECRET_KEY}
+  bucket-name: ${TEST_MINIO_BUCKET:nstl-open-platform-files}
