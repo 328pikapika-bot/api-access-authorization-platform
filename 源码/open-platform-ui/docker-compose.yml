@@ -1,0 +1,15 @@
+version: '3.9'
+services:
+  open-platform-web:
+    image: docker-hosted.example.invalid/nstl/open-platform/web-frontend:${VERSION:-1.0.0}
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: open-platform-web
+    ports:
+      - "18300:80"
+    restart: unless-stopped
+    environment:
+      - TZ=Asia/Shanghai
+    depends_on:
+      - open-platform-service

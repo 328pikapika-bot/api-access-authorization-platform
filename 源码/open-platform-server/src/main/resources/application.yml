@@ -1,0 +1,10 @@
+server:
+  port: 17300
+  servlet:
+    context-path: /api/v1/service/open_platform
+
+spring:
+  application:
+    name: open-platform-server
+  profiles:
+    active: ${SPRING_PROFILES_ACTIVE:${APP_ENV:test}}

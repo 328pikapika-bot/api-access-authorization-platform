@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "tdesign-icons-vue-next": "^0.4.4",
+    "tdesign-vue-next": "^1.19.0"
+  },
+  "devDependencies": {
+    "less": "^4.6.4",
+    "vite-plugin-vue-devtools": "^7.0.0"
+  }
+}

@@ -1,0 +1,75 @@
+/* 全局样式 */
+
+:root {
+  --td-brand-color: #0052d9;
+  --td-bg-color-page: #f5f7fa;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+  background-color: var(--td-bg-color-page);
+}
+
+#app {
+  width: 100%;
+  height: 100%;
+}
+
+/* 滚动条样式 */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--td-scrollbar-color, #c1c1c1);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+}
+
+/* 代码块基础样式 */
+pre, code {
+  font-family: 'Fira Code', 'Courier New', monospace;
+}
+
+/* TDesign 样式微调 */
+.t-layout {
+  background-color: transparent !important;
+}
+
+/* 覆盖可能残留的 Element Plus 基础影响 */
+button {
+  outline: none;
+}
+
+/* 下拉菜单文字显示完整，不省略 */
+.t-dropdown__item-text {
+  overflow: visible !important;
+  text-overflow: clip !important;
+  white-space: nowrap !important;
+  flex: none !important;
+}
+.t-dropdown__menu {
+  width: auto !important;
+  min-width: 200px;
+  max-width: none !important;
+}
+.t-dropdown__item {
+  max-width: none !important;
+  width: auto !important;
+}
